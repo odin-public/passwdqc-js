@@ -1,0 +1,29 @@
+{
+	"name": 		"pwqcheck",
+	"version": 		"0.0.1",
+	"homepage": 	"http://www.openwall.com/passwdqc/",
+	"description": 	"A password/passphrase strength checking and policy enforcement toolset",
+
+	"author": {
+		"name": 	"Evgeny Uspenskiy",
+		"email": 	"euspenskiy@parallels.com"
+	},
+
+	"repository": {
+		"type": 	"git",
+    	"url": 		"https://github.com/Parallels/pwqcheck.git"
+	},
+
+	"bugs": {
+		"url": 		"https://github.com/Parallels/pwqcheck/issues"
+	},
+
+	"main": "./src/passwdqc_check.js",
+
+	"licenses": [
+    	{
+			"type": "MIT",
+			"url": 	"https://github.com/Parallels/pwqcheck/LICENSE"
+		}
+	]
+}

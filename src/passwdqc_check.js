@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2000-2002,2010,2013 by Solar Designer.  See LICENSE.
+ * Copyright (c) 2014 Parallels, Inc.
  */
 var dictionary = require('./dictionary').dictionary;
 

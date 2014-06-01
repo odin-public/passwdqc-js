@@ -4,17 +4,7 @@
  */
 var dictionary = require('./dictionary').dictionary;
 
-
-
-
-
-
-
-
-
 var FIXED_BITS = 15;
-
-
 
 /*
  * Calculates the expected number of different characters for a random
@@ -22,8 +12,7 @@ var FIXED_BITS = 15;
  * with the _requested_ minimum length (so longer passwords don't have
  * to meet this strict requirement for their length).
  */
-function expected_different(charset, length)
-{
+function expected_different(charset, length){
 	var x, y, z;
 
 	x = ((charset - 1) << FIXED_BITS) / charset;
@@ -47,8 +36,7 @@ function expected_different(charset, length)
  * The biases do not affect the number of different characters, character
  * classes, and word count.
  */
-function is_simple(params, newpass,	bias, passphrase_bias)
-{
+function is_simple(params, newpass,	bias, passphrase_bias){
 	var length, classes, words, chars,
 		digits, lowers, uppers, others, unknowns,
 		c, p;
@@ -69,8 +57,6 @@ function is_simple(params, newpass,	bias, passphrase_bias)
 			uppers++;
 		else
 			others++;
-
-
 /* A word starts when a letter follows a non-letter or when a non-ASCII
  * character follows a space character.  We treat all non-ASCII characters
  * as non-spaces, which is not entirely correct (there's the non-breaking
@@ -151,19 +137,9 @@ function is_simple(params, newpass,	bias, passphrase_bias)
 	return 1;
 }
 
-function unify(dst, src)
-{
-	var i, c;
-
-
-
-
-
-
-
-
+function unify(dst, src){
 	for (var i = 0; i < src.length; i++){
-		c = src.charAt(i);
+		var c = src.charAt(i);
 		if (isascii(c) && isupper(c))
 			c = c.toLowerCase();
 		switch (c) {
@@ -187,35 +163,14 @@ function unify(dst, src)
 			c = '7'; break;
 		}
 		dst += c;
-	};
+	}
 
 	return dst;
 }
 
-function reverse(src)
-{
+function reverse(src){
 	return src.split("").reverse().join("");
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
  * Needle is based on haystack if both contain a long enough common
@@ -223,15 +178,8 @@ function reverse(src)
  * substring either removed with partial length credit for it added
  * or partially discounted for the purpose of the length check.
  */
-function is_based(params, haystack, needle, original, mode)
-{
+function is_based(params, haystack, needle, original, mode){
 	var scratch, length, i, j, p, worst_bias;
-
-
-
-
-
-
 
 	if (!params.match_length)	// disabled
 		return 0;
@@ -251,9 +199,6 @@ function is_based(params, haystack, needle, original, mode)
 			for (var k=0; k<haystack.length; k++)
 				if (haystack[k] == q0 &&  haystack.substring(k+1, k+1+j1) == q1.substring(0,j1)) { // or memcmp()
 					if ((mode & 0xff) == 0) { // remove & credit
-
-
-
 						// remove j chars
 						var pos = length - (i + j);
 						if (!(mode & 0x100)) // not reversed
@@ -265,10 +210,7 @@ function is_based(params, haystack, needle, original, mode)
 						bias = params.match_length - 1;
 						if (is_simple(params, scratch, bias, bias))
 							return 1;
-
 					} else { // discount
-
-
 // Require a 1 character longer match for substrings containing leetspeak
 // when matching against dictionary words
 						bias = -1;
@@ -305,7 +247,7 @@ function is_based(params, haystack, needle, original, mode)
 					}
 				}
 
-// Zero bias implies that there were no matches for this length.  If so,
+ // Zero bias implies that there were no matches for this length.  If so,
  // * there's no reason to try the next substring length (it would result in
  // * no matches as well).  We break out of the substring length loop and
  // * proceed with all substring lengths for the next position in needle.
@@ -360,14 +302,8 @@ var seq = [
  * that aren't short English words.  Perhaps support for large wordlists
  * should still be added, even though this is now of little importance.
  */
-function is_word_based(params, needle, original, is_reversed)
-{
+function is_word_based(params, needle, original, is_reversed){
 	var word, unified, i, length, mode;
-
-
-
-
-
 
 	if (!params.match_length)	/* disabled */
 		return null;
@@ -379,8 +315,6 @@ function is_word_based(params, needle, original, is_reversed)
 		length = strlen(word);
 		if (length < params.match_length)
 			continue;
-
-
 
 		word = unify("", word);
 		if (is_based(params, word, needle, original, mode))
@@ -405,19 +339,9 @@ function is_word_based(params, needle, original, is_reversed)
 	return null;
 }
 
-
-
-
-
-function passwdqc_check(params, newpass, oldpass, pw)
-{
+function passwdqc_check(params, newpass, oldpass, pw){
 	var truncated, u_newpass, u_reversed, u_oldpass,
 		u_name, u_gecos, u_dir, reason, length;
-
-
-
-
-
 
 	u_newpass = u_reversed = null;
 	u_oldpass = null;
@@ -428,14 +352,10 @@ function passwdqc_check(params, newpass, oldpass, pw)
 	if (oldpass && oldpass == newpass)
 		return REASON_SAME;
 
-
-
 	length = strlen(newpass);
 
 	if (length < params.min[4])
 		return REASON_SHORT;
-
-
 
 	if (length > params.max) {
 		if (params.max == 8) {
@@ -447,10 +367,6 @@ function passwdqc_check(params, newpass, oldpass, pw)
 			return REASON_LONG;
 		}
 	}
-
-
-
-
 
 	if (is_simple(params, newpass, 0, 0)) {
 		reason = REASON_SIMPLE;
@@ -477,8 +393,6 @@ function passwdqc_check(params, newpass, oldpass, pw)
 		 is_based(params, u_oldpass, u_reversed, newpass, 0x100)))
 		return REASON_SIMILAR;
 
-
-
 	if (pw &&
 		(is_based(params, u_name, u_newpass, newpass, 0) ||
 		 is_based(params, u_name, u_reversed, newpass, 0x100) ||
@@ -488,17 +402,12 @@ function passwdqc_check(params, newpass, oldpass, pw)
 		 is_based(params, u_dir, u_reversed, newpass, 0x100)))
 		return REASON_PERSONAL;
 
-
-
 	reason = is_word_based(params, u_newpass, newpass, 0);
 	if (!reason)
 		reason = is_word_based(params, u_reversed, newpass, 0x100);
 
 	return reason;
 }
-
-
-
 
 function isascii(c){
 	return /^[\x00-\x7F]?$/.test(c);

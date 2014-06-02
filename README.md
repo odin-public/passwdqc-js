@@ -3,7 +3,7 @@
 
 ## About
 
-Passwdqc-js is a JavaScript port of [passwdqc](http://openwall.com/passwdqc/), the brilliant password quality checker library, made by [Parallels](https://www.parallels.com/). Passwdqc-js provides ability to evaluate passwords quality directly in a browser. 
+Passwdqc-js is a JavaScript port of [passwdqc](http://openwall.com/passwdqc/), the brilliant password quality checker library, made by [Parallels](https://www.parallels.com/). Passwdqc-js supports AMD and NodeJS/CommonJS module format so it can be run in the browser or in the server.
 
 ## Compatibilty w/ Passwdqc
 
@@ -30,17 +30,17 @@ Use `passwdqc.check(newpass, [oldpass], [params], [gecos])` function to check pa
 
 ### Example
 
-	var passwdqc = require('passwdqc_check');
-	
+	var passwdqc = require('passwdqc');
+
 	var rv = passwdqc.check(password, old_password);
-	
+
 	if (!rv) {
 		// Password is of good quality
 		// ...
 	} else {
 		// The "rv" now contains reason why password considered weak
 	}
-	
+
 ## TODO
 * More examples
 * Reference implementation for password meter with visual feedback

@@ -28,18 +28,18 @@ Use `passwdqc.check(newpass, [oldpass], [login], [gecos], [params])` function to
 * The reason why password is considered weak, otherwise.
 
 ### Example
+```js
+var passwdqc = require('passwdqc');
 
-	var passwdqc = require('passwdqc');
+var rv = passwdqc.check(password, old_password);
 
-	var rv = passwdqc.check(password, old_password);
-
-	if (!rv) {
-		// Password is of good quality
-		// ...
-	} else {
-		// The "rv" now contains reason why password considered weak
-	}
-
+if (!rv) {
+	// Password is of good quality
+	// ...
+} else {
+	// The "rv" now contains reason why password considered weak
+}
+```
 ## TODO
 * More examples
 * Reference implementation for password meter with visual feedback

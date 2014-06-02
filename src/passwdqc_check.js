@@ -480,8 +480,8 @@ define(["exports", "./dictionary"], function(exports, dict){
 		retry: 3
 	}
 
-	function check(newpass, oldpass, pms, pw){
-		return passwdqc_check(pms || params, newpass, oldpass, pw);
+	function check(newpass, oldpass, login, gecos, pms){
+		return passwdqc_check(pms || params, newpass, oldpass, login ? { pw_name: login, pw_gecos: gecos } : login);
 	}
 
 	exports.check = check;

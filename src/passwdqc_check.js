@@ -23,7 +23,7 @@ define(["exports", "./dictionary"], function(exports, dict){
 			y = (y * x) >> FIXED_BITS;
 		z = charset * ((1 << FIXED_BITS) - y);
 
-		return (z >> FIXED_BITS);
+		return (z >> FIXED_BITS)|0;
 	}
 
 	/*
@@ -76,6 +76,8 @@ define(["exports", "./dictionary"], function(exports, dict){
 			if(newpass.slice(length).indexOf(c) === -1)
 				chars++;
 		}
+
+		length = strlen(newpass);
 
 		if (!length)
 			return 1;

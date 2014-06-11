@@ -18,7 +18,7 @@ Use `passwdqc.check(newpass, [oldpass], [login], [gecos], [params])` function to
 
 * **newpass**: password to check
 * **oldpass**: old password to check if new password is based on it
-* **login**: user's login name to check that password is not based on it  
+* **login**: user's login name to check that password is not based on it
 * **gecos**: any other personal information to check
 * **params**: custom parameters for passwdqc algorithm, [see](http://www.openwall.com/passwdqc/README.shtml)
 
@@ -28,6 +28,7 @@ Use `passwdqc.check(newpass, [oldpass], [login], [gecos], [params])` function to
 * The reason why password is considered weak, otherwise.
 
 ### Example
+**NodeJS**
 ```js
 var passwdqc = require('passwdqc');
 
@@ -40,7 +41,35 @@ if (!rv) {
 	// The "rv" now contains reason why password considered weak
 }
 ```
+
+**Client-Side**
+```js
+// Declare security policy
+var lowParams	 = { min: [6,  6,  6, 6, 6], max: 40, passphrase_words: 3, match_length: 4, similar_deny: 1, random_bits: 47, flags: 3, retry: 3 },
+	mediumParams = { min: [8,  8,  8, 7, 6], max: 40, passphrase_words: 3, match_length: 4, similar_deny: 1, random_bits: 47, flags: 3, retry: 3 };
+
+// Checking value
+function check(val){
+    if(val.length == 0) return 0;
+    if(!passwdqc_check(val)) return 4;
+    if(!passwdqc_check(val, undefined, undefined, undefined, mediumParams)) return 3;
+    if(!passwdqc_check(val, undefined, undefined, undefined, lowParams)) return 2;
+    return 1;
+}
+```
+[Live full example](http://jsfiddle.net/burashka/mdhs4/2/embedded/result/)
+
+### Distribution
+**NPM**
+```shell
+npm install passwdqc
+```
+
+**Bower**
+```shell
+npm install passwdqc
+```
+
 ## TODO
 * More examples
-* Reference implementation for password meter with visual feedback
 * Random password/passphrase generator

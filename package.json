@@ -1,8 +1,8 @@
 {
-	"name": 		"passwdqc-js",
+	"name": 		"passwdqc",
 	"version": 		"0.0.1",
-	"homepage": 		"https://github.com/Parallels/passwdqc-js/",
-	"description":		"JavaScript port of Openwall passwdqc, a password/passphrase strength checking and policy enforcement toolset.",
+	"homepage": 	"https://github.com/Parallels/passwdqc-js/",
+	"description":	"JavaScript port of Openwall passwdqc, a password/passphrase strength checking and policy enforcement toolset.",
 
 	"author": {
 		"name": 	"Evgeny Uspenskiy",

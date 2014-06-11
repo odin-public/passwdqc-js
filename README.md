@@ -27,7 +27,7 @@ Use `passwdqc.check(newpass, [oldpass], [login], [gecos], [params])` function to
 * Empty string if password is considered good;
 * The reason why password is considered weak, otherwise.
 
-### Example
+### Examples
 **NodeJS**
 ```js
 var passwdqc = require('passwdqc');
@@ -66,8 +66,9 @@ npm install passwdqc
 ```
 
 **Bower**
+More info about [Bower](http://bower.io/)
 ```shell
-npm install passwdqc
+bower install passwdqc
 ```
 
 ## TODO

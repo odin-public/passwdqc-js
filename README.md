@@ -3,7 +3,7 @@
 
 The [passwdqc](http://openwall.com/passwdqc/) is the brilliant password quality checker library made by [Openwall](http://openwall.com/). **Passwdqc-js** is a JavaScript port of [passwdqc](http://openwall.com/passwdqc/), made by [Parallels](https://www.parallels.com/). **Passwdqc-js** supports AMD and NodeJS/CommonJS module format. So it runs on both client and server.
 
-## Compatibilty w/ Passwdqc
+## Compatibilty with Passwdqc
 
 Passwdqc-js was tested for compatibility with original passwdqc. We used following password databases in order to guarantee that both accept nearly the same subset of passwords:
 

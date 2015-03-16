@@ -1,6 +1,6 @@
 {
   "name": "passwdqc",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "JavaScript port of Openwall passwdqc, a password/passphrase strength checking and policy enforcement toolset.",
   "main": "src/passwdqc_check.js",
   "moduleType": [

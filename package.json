@@ -1,6 +1,6 @@
 {
 	"name": 		"passwdqc",
-	"version": 		"0.0.1",
+	"version": 		"0.0.2",
 	"homepage": 		"https://github.com/PA-Platform/passwdqc-js/",
 	"description":		"JavaScript port of Openwall passwdqc, a password/passphrase strength checking and policy enforcement toolset.",
 

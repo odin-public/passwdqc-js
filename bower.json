@@ -17,7 +17,7 @@
     "Evgeny Uspenskiy"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/Parallels/passwdqc-js/",
+  "homepage": "https://github.com/PA-Platform/passwdqc-js/",
   "ignore": [
     "**/.*",
     "package.json"

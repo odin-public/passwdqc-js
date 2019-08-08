@@ -54,7 +54,6 @@
  * characters will pass the minimum length check.  In other words, this
  * default assumes that no word is shorter than 3 characters.
  */
-({define:typeof define!="undefined"?define:function(deps, factory){module.exports = factory(exports);}}).
 define(["exports"], function(exports){
 
 	exports.dictionary = [

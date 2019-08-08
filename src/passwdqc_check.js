@@ -2,7 +2,6 @@
  * Copyright (c) 2000-2002,2010,2013 by Solar Designer.  See LICENSE.
  * Copyright (c) 2014 Parallels, Inc.
  */
-({define:typeof define!="undefined"?define:function(deps, factory){module.exports = factory(exports, require("./dictionary"));}}).
 define(["exports", "./dictionary"], function(exports, dict){
 	var dictionary = dict.dictionary;
 
